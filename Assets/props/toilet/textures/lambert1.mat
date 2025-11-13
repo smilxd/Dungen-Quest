@@ -67,6 +67,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ParallaxMapping_6499c76fe66a49a491a63e5fd031d802_Heightmap_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: f279a6ad345d23b4c997bd9659c5e63b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_334d2ef334bd4bcf8d074ef507245336_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 6c6da21b9e2916746afeded7b1a7355c, type: 3}
         m_Scale: {x: 1, y: 1}
