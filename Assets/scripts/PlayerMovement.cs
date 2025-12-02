@@ -2,48 +2,47 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement")]
-    public float moveSpeed;
-    
+    public float moveSpeed = 8f;
     public Transform orientation;
+
     float horizontalInput;
-    float verticalInput;    
+    float verticalInput;
     Vector3 moveDirection;
     Rigidbody rb;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
     }
-   private void Myinput()
+
+    void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
     }
+
+    void FixedUpdate()
+    {
+        MovePlayer();
+        SpeedControl();
+    }
+
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        rb.AddForce(moveDirection.normalized * moveSpeed * 1f, ForceMode.Force);
+        Vector3 targetVelocity = moveDirection.normalized * moveSpeed;
+        rb.linearVelocity = new Vector3(targetVelocity.x, rb.linearVelocity.y, targetVelocity.z);
     }
-    void Update()
-    {
 
-        Myinput();
-        SpeedControl();
-    }
-    private void FixedUpdate()
-    {
-        MovePlayer();
-    }
-    private void SpeedControl()
+    public void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
         if (flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
         }
     }
-
-
 }
