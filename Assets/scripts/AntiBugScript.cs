@@ -17,7 +17,7 @@ public class AntiBugScript : MonoBehaviour
     private void Delaystart()
     {
        delay += Time.deltaTime;
-        if (delay >= 3f)
+        if (delay >= 1f)
         {
             GameObjectToDisable.SetActive(false);
         }   
